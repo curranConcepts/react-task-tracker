@@ -1,22 +1,22 @@
 import { useState } from 'react' 
 const AddTask = ({ onAdd }) => {
-    const [text, setText] = useState('')
-    const [day, setDay] = useState('')
-    const [reminder, setReminder] = useState(false)
+    const [task, setTask] = useState('')
+    const [rate, setRate] = useState('')
+    const [measure, setMeasure] = useState('')
 
     const onSubmit = (e) => {
         e.preventDefault()
         
-        if(!text) {
+        if(!task) {
             alert('Please add a task')
             return
         }
 
-        onAdd({ text, day, reminder })
+        onAdd({ task, rate, measure })
 
-        setText('')
-        setDay('')
-        setReminder(false)
+        setTask('')
+        setRate('')
+        setMeasure('')
     }
 
   return (
@@ -26,26 +26,26 @@ const AddTask = ({ onAdd }) => {
             <input 
                 type='text' 
                 placeholder='Add Task' 
-                value={text} 
-                onChange={(e) => setText(e.target.value)} 
+                value={task} 
+                onChange={(e) => setTask(e.target.value)} 
             />
         </div>
         <div className='form-control'>
-            <label>Day & Time</label>
+            <label>Rate</label>
             <input 
-                type='text' 
-                placeholder='Add Day & Time' 
-                value={day} 
-                onChange={(e) => setDay(e.target.value)} 
+                type='float' 
+                placeholder='$0.00' 
+                value={rate}
+                onChange={(e) => setRate(e.target.value)} 
             />
         </div>
-        <div className='form-control form-control-check'>
-            <label>Set Reminder</label>
+        <div className='form-control'>
+            <label>Measure</label>
             <input 
-                type='checkbox'
-                checked={reminder}
-                value={reminder} 
-                onChange={(e) => setReminder(e.currentTarget.checked)} 
+                type= 'text'
+                placeholder='E.g. sqft, ft, etc.'
+                value={measure}
+                onChange={(e) => setMeasure(e.target.value)}
             />
         </div>
 
