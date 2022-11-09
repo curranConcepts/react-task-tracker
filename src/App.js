@@ -1,15 +1,10 @@
 import { useState } from 'react'
 import Header from './components/Header'
+import Footer from './components/Footer'
 import Tasks from './components/Tasks'
 import Entries from './components/Entries'
 import AddTask from './components/AddTask'
 import AddEntry from './components/AddEntry'
-import Navbar from './components/NavBar'
-import Home from './pages'
-import Help from './pages'
-import Logout from './pages/logout'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
 
 
 
@@ -33,6 +28,12 @@ const App = () => {
       id: 3,
       task: 'Tear-out',
       rate: 1.00,
+      measure: 'sqft',
+    },
+    {
+      id: 4,
+      task: 'Floor prep',
+      rate: 0.10,
       measure: 'sqft',
     },
   ])
@@ -69,6 +70,12 @@ const App = () => {
     setTasks(tasks.filter((task) => task.id !== id))
   }
 
+    // Edit Task
+    const editTask = (id) => {
+      const taskToEdit = tasks.find((task) => task.id === id)
+      setTasks(tasks.map((task) => task.id === id ? {...task, task: taskToEdit} : task))
+    }
+
     // Add Entry
     const addEntry = (entry) => {
       const id = Math.floor(Math.random() * 10000) + 1
@@ -91,32 +98,17 @@ const App = () => {
     )
   }
 
-  // Logout
-  // const logout = (req, res) => {
-  //   req.logout(function(err) {
-  //     if (err) { return (err); }
-  //     res.redirect('/');
-  //   });
-  // };
 
 
   return (
     <div className='app'>
-      <Router>
-        <Navbar className='nav' />
-          <Routes>
-            <Route path="/" exact component={Home} />
-            <Route path='/logout' component={Logout} />
-            <Route path='/help' component={Help} />
-          </Routes>
-      </Router>
     <div className="table">
     <div className="container">
       <Header title='Tasks' onAdd={() => setShowAddTask(!showAddTask)} showAdd={showAddTask}/>
       {showAddTask && <AddTask onAdd={addTask}/>}
       {tasks.length > 0 ? (
         <Tasks tasks={tasks} onDelete=
-        {deleteTask} onToggle={toggleReminder} />
+        {deleteTask} onToggle={toggleReminder} onEdit={editTask} />
       ) : (
         'No Tasks To Show'
       )}
@@ -134,6 +126,8 @@ const App = () => {
     </div>
 
     </div>
+
+    <Footer /> 
 
     </div>
   )

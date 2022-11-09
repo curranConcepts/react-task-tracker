@@ -1,5 +1,5 @@
 import { useState } from 'react' 
-const AddTask = ({ onAdd }) => {
+const AddTask = ({ onAdd, onEdit }) => {
     const [task, setTask] = useState('')
     const [rate, setRate] = useState('')
     const [measure, setMeasure] = useState('')
