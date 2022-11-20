@@ -1,10 +1,10 @@
 
 
-const Hero = (user, time, pay) => {
+const Hero = () => {
   return (
-    <div>
-    <h1>Hello {user.name}</h1>
-    <p>You have worked a total of {} hours, and made ${}, for an average of {} per hour.</p>
+    <div className="">
+    <h3>Hello Austin,</h3> 
+    <p>You have worked a total of hours, and made $, for an average of  per hour.</p>
     </div>
   )
 }

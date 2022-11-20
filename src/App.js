@@ -5,6 +5,9 @@ import Tasks from './components/Tasks'
 import Entries from './components/Entries'
 import AddTask from './components/AddTask'
 import AddEntry from './components/AddEntry'
+import Hero from './components/Hero'
+import Button from './components/Button'
+import { Link } from 'react-router-dom'
 
 
 
@@ -102,6 +105,15 @@ const App = () => {
 
   return (
     <div className='app'>
+      <div className='nav'>
+        <h1>$Profit Prophet</h1>
+        <Link to='/logout'>
+        <Button text='Logout' color='grey' onClick={'click'} />
+        </Link>
+      </div>
+      <div className="table2">
+        <Hero />
+      </div>
     <div className="table">
     <div className="container">
       <Header title='Tasks' onAdd={() => setShowAddTask(!showAddTask)} showAdd={showAddTask}/>

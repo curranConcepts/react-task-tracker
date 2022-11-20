@@ -1,4 +1,7 @@
 import { useState } from 'react' 
+import Stopwatch from './StopWatch'
+
+
 const AddEntry = ({ onAdd }) => {
     const [task, setTask] = useState('')
     const [date, setDate] = useState('')
@@ -26,6 +29,8 @@ const AddEntry = ({ onAdd }) => {
     }
 
   return (
+    <div>
+    <Stopwatch />
     <form className='add-form' onSubmit={onSubmit}>
         <div className='form-control'>
             <label>Task</label>
@@ -84,6 +89,7 @@ const AddEntry = ({ onAdd }) => {
 
         <input type='submit' value='Save Entry' className='btn btn-block' />
     </form>
+    </div>
   )
 }
 
